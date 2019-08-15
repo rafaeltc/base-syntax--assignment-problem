@@ -1,10 +1,25 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './App.css';
+import UserInput from './UserInput/UserInput'
+import UserOutput from './UserOutput/UserOutput'
 
-class App extends Component {
-  render() {
+const App = props => {
+
+    const [state, setState] = useState({
+      username:"John Doe"
+    });
+
+    const manipulateStateHandler = (event) => {
+      console.log(`${event.target.value} - ${Date.now()}` );
+      setState({
+        username: event.target.value
+      });
+    };
+
+
     return (
       <div className="App">
+        <h1>Base Syntax Assignment</h1>
         <ol>
           <li>Create TWO new components: UserInput and UserOutput</li>
           <li>UserInput should hold an input element, UserOutput two paragraphs</li>
@@ -17,9 +32,12 @@ class App extends Component {
           <li>Add two-way-binding to your input (in UserInput) to also display the starting username</li>
           <li>Add styling of your choice to your components/ elements in the components - both with inline styles and stylesheets</li>
         </ol>
+        <UserInput onChange={manipulateStateHandler} username={state.username}></UserInput>
+        <UserOutput username="Gumball"></UserOutput>
+        <UserOutput username={state.username}></UserOutput>
+        
       </div>
     );
-  }
-}
+  };
 
 export default App;
