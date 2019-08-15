@@ -10,11 +10,13 @@ const App = props => {
     });
 
     const manipulateStateHandler = (event) => {
-      console.log(`${event.target.value} - ${Date.now()}` );
-      setState({
-        username: event.target.value
-      });
+      setState({username: event.target.value});
     };
+
+    //check if your user card should be rendered
+    let yourUser = state.username ? 
+      <UserOutput username={state.username}></UserOutput> : 
+      null;
 
 
     return (
@@ -34,9 +36,7 @@ const App = props => {
         </ol>
         <UserInput onChange={manipulateStateHandler} username={state.username}></UserInput>
         <UserOutput username="Gumball"></UserOutput>
-        { state.username ? 
-          <UserOutput username={state.username}></UserOutput> : null
-        }
+        { yourUser }
         
         
       </div>
