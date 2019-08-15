@@ -34,7 +34,10 @@ const App = props => {
         </ol>
         <UserInput onChange={manipulateStateHandler} username={state.username}></UserInput>
         <UserOutput username="Gumball"></UserOutput>
-        <UserOutput username={state.username}></UserOutput>
+        { state.username ? 
+          <UserOutput username={state.username}></UserOutput> : null
+        }
+        
         
       </div>
     );
